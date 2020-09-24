@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using VideoLister.API;
+using VideoLister.ViewModel;
 
 namespace VideoLister
 {
@@ -27,8 +28,8 @@ namespace VideoLister
         {
             InitializeComponent();
             Trace.WriteLine("main window initialized");
-            Api api = new Api();
-            api.GET("https://pt.ptawe.com/api/video-promotion/v1/list?category=girl&clientIp=2001:4c4c:2095:2600:f8a7:130e:d05a:ca2&limit=1&pageIndex=1&psid=balint&accessKey=4dcdc998265be0ffcc1e7e978fd2ccf1&primaryColor=FFEEEE&labelColor=EEFFEE");
+            VideoViewModel videoViewModel = new VideoViewModel();
+            videoViewModel.Call();
         }
     }
 }
