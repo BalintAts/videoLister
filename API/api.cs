@@ -4,24 +4,32 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 
 namespace VideoLister.API
 {
     class Api
     {
 
-        protected HttpResponseMessage GET(string url)
-        {
+        public HttpResponseMessage GET(string url)
+        {            
             using(HttpClient client = new HttpClient())
             {
-                
-                var response = client.GetAsync(url);
-                response.Wait();
-
-                return response.Result;
+                try
+                {
+                    var response = client.GetStringAsync(url);
+                    response.Wait();
+                    Trace.WriteLine(response.Result);
+                }
+                catch (HttpRequestException e)
+                {
+                    //show the message to the user
+                    return null;
+                }
+                return null;
             }
 
-            return null;
         }
 
     }
