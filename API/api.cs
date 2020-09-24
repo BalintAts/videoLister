@@ -13,6 +13,7 @@ namespace VideoLister.API
 {
     class Api
     {
+        
 
         public HttpResponseMessage GET(string url)
         {            
@@ -23,7 +24,7 @@ namespace VideoLister.API
                     var response = client.GetStringAsync(url);
                     response.Wait();
                     //Trace.WriteLine(response.Result);
-                    CreateModel(response.Result);
+                    CreateModels(response.Result);
                 }
                 catch (HttpRequestException e)
                 {
@@ -35,16 +36,27 @@ namespace VideoLister.API
 
         }
 
-        public VideoModel CreateModel(string rawJson)
+        public List<VideoModel> CreateModels(string rawJson)
         {
-            VideoModel videoModel = new VideoModel();
+            List<VideoModel> videos = new List<VideoModel>();
             JObject jsonResp = JObject.Parse(rawJson);
             foreach( JToken jToken in jsonResp["data"]["videos"])
             {
-                Trace.WriteLine(jToken["title"]);
+                //Trace.WriteLine(jToken["title"]);
+                VideoModel videoModel = new VideoModel();
+                
+                videoModel.Title = jToken["title"].ToString();
+         
+                videos.Add(videoModel);
+
+               
+            }
+            foreach(VideoModel video in videos)
+            {
+                Trace.WriteLine(video.Title);
             }
 
-            return videoModel;
+            return videos;
         }
 
     }

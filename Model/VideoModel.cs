@@ -11,7 +11,7 @@ namespace VideoLister.Model
         public string Id { get; set; }
         public string Title { get; set; }
         public string Duration { get; set; }
-        public string Tags { get; set; }
+        public List<string> Tags { get; set; }
         public string ProfileImage { get; set; }
         public string PreviewImages { get; set; }
         public string TargetUrl { get; set; }
