@@ -15,18 +15,23 @@ namespace VideoLister
         public MainWindow()
         {
             
-
             InitializeComponent();
             Trace.WriteLine("main window initialized");
             VideoViewModel videoViewModel = new VideoViewModel();
-            Videos = videoViewModel.GetList("girl",1);
+            Videos = videoViewModel.GetList("girl" ,1);
             foreach (VideoModel video in Videos)
             {
                 Trace.WriteLine(video.Title);
             }
             DataContext = this;
-
-            //events will call functions like getlist from VideoViewModel
+            
         }
+        //events will call functions like getlist from VideoViewModel
+
+        public void  NextPage(object sender, RoutedEventArgs e)
+        {
+            Trace.WriteLine("NExtgghdfkjGEWWWOIHEGOIHEGOIHEOIHWGOIHWEGOIHWEGOIWHEGOIHWEGOIWHEGOIWHEGOIWEHGOIWEHGOWIEHGOWIEHGOIWHEGOIWEH");
+        }
+
     }
 }
