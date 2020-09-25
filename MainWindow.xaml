@@ -22,6 +22,16 @@
         </Grid>
         <ScrollViewer Grid.Row="1" Padding="11"
                     VerticalScrollBarVisibility="Auto">
+            <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
+                            <TextBlock Text="{Binding Title, Mode=OneWay}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollViewer>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Content="Prev" Width="76" Margin="0,0,0,0.4" />

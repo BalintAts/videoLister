@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace VideoLister.ViewModel
 {
-    class VideoViewModel
+    public class VideoViewModel
     {
         public List<VideoModel> GetList(string category, int page)
         {

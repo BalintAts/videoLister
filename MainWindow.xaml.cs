@@ -6,30 +6,32 @@ using VideoLister.ViewModel;
 
 namespace VideoLister
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        public int PageNumber { get; set; }
         public List<VideoModel> Videos { get; set; }
+        public VideoViewModel videoViewModel { get; set; }
+        public string Category { get; set; }
+
         public MainWindow()
-        {
-            
+        {            
             InitializeComponent();
+            PageNumber = 1;
+            Category = "girl";
             Trace.WriteLine("main window initialized");
-            VideoViewModel videoViewModel = new VideoViewModel();
-            Videos = videoViewModel.GetList("girl" ,1);
+            videoViewModel = new VideoViewModel();
+            Videos = videoViewModel.GetList(Category ,PageNumber);
             foreach (VideoModel video in Videos)
             {
                 Trace.WriteLine(video.Title);
             }
-            DataContext = this;
-            
+            DataContext = this;            
         }
-        //events will call functions like getlist from VideoViewModel
 
         public void  NextPage(object sender, RoutedEventArgs e)
         {
+            PageNumber++;
+            Videos = videoViewModel.GetList(Category, PageNumber);
             Trace.WriteLine("NExtgghdfkjGEWWWOIHEGOIHEGOIHEOIHWGOIHWEGOIHWEGOIWHEGOIHWEGOIWHEGOIWHEGOIWEHGOIWEHGOWIEHGOWIEHGOIWHEGOIWEH");
         }
 
