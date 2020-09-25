@@ -14,8 +14,10 @@ namespace VideoLister.API
     class Api
     {
         
+        private string key { get; set; }
+        private string myIp { get; set; }
 
-        public HttpResponseMessage GET(string url)
+        public string GET(string url)
         {            
             using(HttpClient client = new HttpClient())
             {
@@ -24,7 +26,8 @@ namespace VideoLister.API
                     var response = client.GetStringAsync(url);
                     response.Wait();
                     //Trace.WriteLine(response.Result);
-                    CreateModels(response.Result);
+                    //CreateModels(response.Result);
+                    return response.Result;
                 }
                 catch (HttpRequestException e)
                 {
@@ -33,7 +36,13 @@ namespace VideoLister.API
                 }
                 return null;
             }
+        }
 
+        public List<VideoModel> GetList()
+        {
+            string rawJson = GET("https://pt.ptawe.com/api/video-promotion/v1/list?category=girl&clientIp=2001:4c4c:2095:2600:f8a7:130e:d05a:ca2&limit=10&pageIndex=3&psid=balint&accessKey=4dcdc998265be0ffcc1e7e978fd2ccf1&primaryColor=FFEEEE&labelColor=EEFFEE");
+            List<VideoModel> videos =  CreateModels(rawJson);
+            return videos;
         }
 
         public List<VideoModel> CreateModels(string rawJson)
@@ -42,7 +51,6 @@ namespace VideoLister.API
             JObject jsonResp = JObject.Parse(rawJson);
             foreach( JToken jToken in jsonResp["data"]["videos"])
             {
-                //Trace.WriteLine(jToken["title"]);
                 VideoModel videoModel = new VideoModel();
                 
                 videoModel.Title = jToken["title"].ToString();
@@ -51,11 +59,6 @@ namespace VideoLister.API
 
                
             }
-            foreach(VideoModel video in videos)
-            {
-                Trace.WriteLine(video.Title);
-            }
-
             return videos;
         }
 
