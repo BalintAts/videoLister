@@ -13,9 +13,6 @@ namespace VideoLister.API
 {
     class Api
     {
-        
-        private string key { get; set; }
-        private string myIp { get; set; }
 
         public string GET(string url)
         {            
@@ -40,6 +37,8 @@ namespace VideoLister.API
 
         public List<VideoModel> GetList()
         {
+            UrlBuilder urlBuilder = new UrlBuilder();
+            string url = urlBuilder.BuildUrl("girl",1);
             string rawJson = GET("https://pt.ptawe.com/api/video-promotion/v1/list?category=girl&clientIp=2001:4c4c:2095:2600:f8a7:130e:d05a:ca2&limit=10&pageIndex=3&psid=balint&accessKey=4dcdc998265be0ffcc1e7e978fd2ccf1&primaryColor=FFEEEE&labelColor=EEFFEE");
             List<VideoModel> videos =  CreateModels(rawJson);
             return videos;
@@ -55,9 +54,7 @@ namespace VideoLister.API
                 
                 videoModel.Title = jToken["title"].ToString();
          
-                videos.Add(videoModel);
-
-               
+                videos.Add(videoModel);               
             }
             return videos;
         }
