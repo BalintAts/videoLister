@@ -12,14 +12,12 @@ namespace VideoLister.ViewModel
 {
     class VideoViewModel
     {
-        public void Call()
+        public List<VideoModel> GetList()
         {
             Api api = new Api();
             List<VideoModel> videos =  api.GetList();
-            foreach (VideoModel video in videos)
-            {
-                Trace.WriteLine(video.Title);
-            }
+
+            return videos;
         }
     }
 }
