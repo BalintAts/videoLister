@@ -19,7 +19,7 @@ namespace VideoLister
             InitializeComponent();
             Trace.WriteLine("main window initialized");
             VideoViewModel videoViewModel = new VideoViewModel();
-            Videos = videoViewModel.GetList();
+            Videos = videoViewModel.GetList("girl",1);
             foreach (VideoModel video in Videos)
             {
                 Trace.WriteLine(video.Title);

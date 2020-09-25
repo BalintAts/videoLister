@@ -24,10 +24,10 @@
             <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <StackPanel>
                             <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
                             <TextBlock Text="{Binding Title, Mode=OneWay}"/>
-                        </Grid>
+                        </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

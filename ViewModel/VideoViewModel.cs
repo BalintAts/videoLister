@@ -12,10 +12,10 @@ namespace VideoLister.ViewModel
 {
     class VideoViewModel
     {
-        public List<VideoModel> GetList()
+        public List<VideoModel> GetList(string category, int page)
         {
             Api api = new Api();
-            List<VideoModel> videos =  api.GetList();
+            List<VideoModel> videos =  api.GetList(category, page);
 
             return videos;
         }
