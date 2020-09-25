@@ -34,7 +34,11 @@
             <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Title, Mode=OneWay}"/>
+                        <Grid>
+                            
+                            <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
+                            <TextBlock Text="{Binding Title, Mode=OneWay}"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
