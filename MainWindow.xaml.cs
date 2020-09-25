@@ -25,6 +25,8 @@ namespace VideoLister
                 Trace.WriteLine(video.Title);
             }
             DataContext = this;
+
+            //events will call functions like getlist from VideoViewModel
         }
     }
 }

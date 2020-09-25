@@ -21,21 +21,10 @@
         </Grid>
         <ScrollViewer Grid.Row="1" Padding="11"
                     VerticalScrollBarVisibility="Auto">
-
-            <!-- Here will be a scrollable video list.  maybe with Gridview -->
-            <!--<Border MinHeight="200">
-                <Border.Background>
-                    <RadialGradientBrush RadiusY="1" RadiusX="1" Center="0.5,0.5">
-                        <GradientStop Color="White" Offset="0" />
-                        <GradientStop Color="Black" Offset="1" />
-                    </RadialGradientBrush>
-                </Border.Background>
-            </Border>-->
             <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            
                             <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
                             <TextBlock Text="{Binding Title, Mode=OneWay}"/>
                         </Grid>
