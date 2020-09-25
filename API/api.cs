@@ -54,6 +54,16 @@ namespace VideoLister.API
                 VideoModel videoModel = new VideoModel();
                 
                 videoModel.Title = jToken["title"].ToString();
+                videoModel.Duration = jToken["duration"].ToString();
+                videoModel.Tags = jToken["tags"].ToString().Split(',').ToList();
+                videoModel.ProfileImage = jToken["profileImage"].ToString();
+                videoModel.PreviewImages = jToken["previewImages"].ToString().Split(',').ToList();
+                videoModel.TargetUrl = jToken["targetUrl"].ToString();
+                videoModel.DetailsUrl = jToken["detailsUrl"].ToString();
+                videoModel.Quality = jToken["quality"].ToString();
+                videoModel.IsHd = jToken["isHd"].ToString();
+                videoModel.Uploader = jToken["uploader"].ToString();
+                videoModel.UploaderLink = jToken["uploaderLink"].ToString();
          
                 videos.Add(videoModel);
 
@@ -61,6 +71,7 @@ namespace VideoLister.API
             }
             return videos;
         }
+
 
     }
 }
