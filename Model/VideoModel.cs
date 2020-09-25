@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoLister.Model
 {
-    class VideoModel
+    public class VideoModel
     {
         public string Id { get; set; }
         public string Title { get; set; }

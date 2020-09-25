@@ -31,8 +31,13 @@
                     </RadialGradientBrush>
                 </Border.Background>
             </Border>-->
-            <Image Source="{Binding ProfileImage , Mode = OneWay}" />
-
+            <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title, Mode=OneWay}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollViewer>
 
     </Grid>
