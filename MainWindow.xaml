@@ -8,7 +8,7 @@
         Title="MainWindow" Height="800" Width="800">
     <Grid RenderTransformOrigin="0.529,0.426">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="31*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -17,8 +17,16 @@
                 <ColumnDefinition  />
                 <ColumnDefinition MinWidth="300"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="Choose your needs:" Margin="0,0,10.8,0"/>
-            <ComboBox Grid.Column="1"  Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="30"/>
+                <RowDefinition MaxHeight="30"/>
+                <RowDefinition MaxHeight="30"/>
+            </Grid.RowDefinitions>
+            <Label  Grid.Row="0" Grid.Column="0" Content="Search actress" Margin="0,0,10.8,0"/>
+            <TextBox Grid.Row="0" Grid.Column="1"  Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Tags" Margin="0,0,10.8,0"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="tagsText" Text="{Binding Tags, Mode=TwoWay}" Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
+            <Button Content="search" Click="Search"/>
         </Grid>
         <ScrollViewer Grid.Row="1" Padding="11"
                     VerticalScrollBarVisibility="Auto">
@@ -37,7 +45,7 @@
                                         </ListView.ItemsPanel>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <Image Source="{Binding}" Width="150"/>
+                                                <!--<Image Source="{Binding}" Width="150"/>-->
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
@@ -55,9 +63,9 @@
             </ListView>
         </ScrollViewer>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Prev" Width="76" Click="PrevPage" Margin="0,0,0,0.4" />
-            <TextBlock Text="{Binding PageNumber[0], Mode=TwoWay}"/>
-            <Button Content="Next"  Width="76" Click="NextPage" Margin="0,0,0,0.4"/>
+            <Button Content="Prev" Width="76" Click="PrevPage" Margin="5,5,5,5" />
+            <TextBlock Text="{Binding PageNumber[0], Mode=TwoWay}" Margin="5,5,5,5"/>
+            <Button Content="Next"  Width="76" Click="NextPage" Margin="5,5,5,5"/>
 
         </StackPanel>
 

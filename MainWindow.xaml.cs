@@ -12,10 +12,14 @@ namespace VideoLister
     public partial class MainWindow : Window
     {
         private int pageNumber = 1; 
-        public ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
-        public ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
-        public VideoViewModel videoViewModel { get; set; }
-        public string Category { get; set; }
+        private ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
+        private ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
+        private VideoViewModel videoViewModel { get; set; }
+        private string Category { get; set; }
+        private string Actress { get; set; }
+        private string Tags { get; set; }
+
+
 
         public MainWindow()
         {            
@@ -25,24 +29,9 @@ namespace VideoLister
             Trace.WriteLine("main window initialized");
             videoViewModel = new VideoViewModel();
             Videos.Clear();
-            List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
-            videos.ForEach(x => Videos.Add(x)); ;
-            //foreach (VideoModel video in Videos)
-            //{
-            //    Trace.WriteLine(video.Title);
-            //}
-            DataContext = this;
-            //foreach (VideoModel item in Videos)
-               
-            //{
-            //    Trace.WriteLine("This is a video");
-            //    foreach (string tag in item.Tags)
-            //    {
-            //        Trace.WriteLine(tag);
-            //    }
-            //}
+            UpdateList();
+            DataContext = this;             
         }
-
 
         public void  NextPage(object sender, RoutedEventArgs e)
         {
@@ -50,11 +39,7 @@ namespace VideoLister
             PageNumber.Clear();
             PageNumber.Add(pageNumber);
             Videos.Clear();
-            List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
-            videos.ForEach(x => Videos.Add(x));
-            Trace.WriteLine(PageNumber);
-
-
+            UpdateList();
         }
 
         public void PrevPage(object sender, RoutedEventArgs e)
@@ -65,9 +50,7 @@ namespace VideoLister
                 PageNumber.Clear();
                 PageNumber.Add(pageNumber);
             }
-            Videos.Clear();
-            List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
-            videos.ForEach(x => Videos.Add(x));
+            UpdateList();
             Trace.WriteLine(PageNumber);
          
         }
@@ -77,6 +60,18 @@ namespace VideoLister
 
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
+        }
+
+        private void Search()
+        {
+            UpdateList();
+        }
+
+        private void UpdateList()
+        {
+            Videos.Clear();
+            List<VideoModel> videos = videoViewModel.GetList(Category, Actress, Tags, PageNumber[0]);
+            videos.ForEach(x => Videos.Add(x));
         }
     }
 }
