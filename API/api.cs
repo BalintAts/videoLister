@@ -41,7 +41,7 @@ namespace VideoLister.API
             //string url = urlBuilder.BuildUrl("girl",1);
             UrlBuilder ub = new UrlBuilder();
             string url = ub.BuildUrl(category, page);
-            //string rawJson = GET("https://pt.ptawe.com/api/video-promotion/v1/list?category=girl&clientIp=2001:4c4c:2095:2600:f8a7:130e:d05a:ca2&limit=10&pageIndex=3&psid=balint&accessKey=4dcdc998265be0ffcc1e7e978fd2ccf1&primaryColor=FFEEEE&labelColor=EEFFEE");
+            //string rawJson = GET("https://pt.ptawe.com/api/video-promotion/v1/list?category=girl&clientIp=2001:4c4c:2095:2600:f8a7:130e:d05a:ca2&limit=1&pageIndex=3&psid=balint&accessKey=4dcdc998265be0ffcc1e7e978fd2ccf1&primaryColor=FFEEEE&labelColor=EEFFEE");
             string rawJson = GET(url);
             List<VideoModel> videos =  CreateModels(rawJson);
             return videos;
