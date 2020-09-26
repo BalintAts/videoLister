@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows;
 using VideoLister.Model;
 using VideoLister.ViewModel;
+using System.Windows.Navigation;
 
 namespace VideoLister
 {
@@ -58,6 +59,13 @@ namespace VideoLister
             List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
             videos.ForEach(x => Videos.Add(x));
             Trace.WriteLine(PageNumber);
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }
