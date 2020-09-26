@@ -25,17 +25,18 @@
             <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
                             <TextBlock Text="{Binding Title, Mode=OneWay}"/>
+                            <TextBlock Text="{Binding TargetUrl, Mode=OneWay}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Prev" Width="76" Margin="0,0,0,0.4" />
-            <TextBlock Text="Page"/>
+            <Button Content="Prev" Width="76" Click="PrevPage" Margin="0,0,0,0.4" />
+            <TextBlock Text="{Binding PageNumber[0], Mode=TwoWay}"/>
             <Button Content="Next"  Width="76" Click="NextPage" Margin="0,0,0,0.4"/>
 
         </StackPanel>

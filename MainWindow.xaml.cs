@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using VideoLister.Model;
@@ -8,19 +10,22 @@ namespace VideoLister
 {
     public partial class MainWindow : Window
     {
-        public int PageNumber { get; set; }
-        public List<VideoModel> Videos { get; set; }
+        private int pageNumber = 1; 
+        public ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
+        public ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
         public VideoViewModel videoViewModel { get; set; }
         public string Category { get; set; }
 
         public MainWindow()
         {            
             InitializeComponent();
-            PageNumber = 1;
             Category = "girl";
+            PageNumber.Add(pageNumber);
             Trace.WriteLine("main window initialized");
             videoViewModel = new VideoViewModel();
-            Videos = videoViewModel.GetList(Category ,PageNumber);
+            Videos.Clear();
+            List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
+            videos.ForEach(x => Videos.Add(x)); ;
             foreach (VideoModel video in Videos)
             {
                 Trace.WriteLine(video.Title);
@@ -28,12 +33,31 @@ namespace VideoLister
             DataContext = this;            
         }
 
+
         public void  NextPage(object sender, RoutedEventArgs e)
         {
-            PageNumber++;
-            Videos = videoViewModel.GetList(Category, PageNumber);
-            Trace.WriteLine("NExtgghdfkjGEWWWOIHEGOIHEGOIHEOIHWGOIHWEGOIHWEGOIWHEGOIHWEGOIWHEGOIWHEGOIWEHGOIWEHGOWIEHGOWIEHGOIWHEGOIWEH");
+            pageNumber++;
+            PageNumber.Clear();
+            PageNumber.Add(pageNumber);
+            Videos.Clear();
+            List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
+            videos.ForEach(x => Videos.Add(x));
+            Trace.WriteLine(PageNumber);
+
         }
 
+        public void PrevPage(object sender, RoutedEventArgs e)
+        {
+            if (pageNumber >= 1)
+            {
+                pageNumber--;
+                PageNumber.Clear();
+                PageNumber.Add(pageNumber);
+            }
+            Videos.Clear();
+            List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
+            videos.ForEach(x => Videos.Add(x));
+            Trace.WriteLine(PageNumber);
+        }
     }
 }
