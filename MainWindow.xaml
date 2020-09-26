@@ -29,9 +29,9 @@
                             <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
                             <TextBlock Text="{Binding Title, Mode=OneWay}"/>
                             <TextBlock Text="This should be a link">
-                                <!--<Hyperlink NavigateUri="{Binding TargetUrl, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                                <Hyperlink NavigateUri="{Binding TargetUrl, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
                                     Click here
-                                </Hyperlink-->>
+                                </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
