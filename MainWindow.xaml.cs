@@ -12,12 +12,12 @@ namespace VideoLister
     public partial class MainWindow : Window
     {
         private int pageNumber = 1; 
-        private ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
-        private ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
+        public ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
+        public ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
         private VideoViewModel videoViewModel { get; set; }
         private string Category { get; set; }
-        private string Actress { get; set; }
-        private string Tags { get; set; }
+        public string Actress { get; set; }
+        public string Tags { get; set; }
 
 
 
@@ -28,7 +28,6 @@ namespace VideoLister
             PageNumber.Add(pageNumber);
             Trace.WriteLine("main window initialized");
             videoViewModel = new VideoViewModel();
-            Videos.Clear();
             UpdateList();
             DataContext = this;             
         }
@@ -51,8 +50,6 @@ namespace VideoLister
                 PageNumber.Add(pageNumber);
             }
             UpdateList();
-            Trace.WriteLine(PageNumber);
-         
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -62,7 +59,7 @@ namespace VideoLister
             e.Handled = true;
         }
 
-        private void Search()
+        private void Search(object sender, RoutedEventArgs e)
         {
             UpdateList();
         }

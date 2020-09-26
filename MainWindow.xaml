@@ -26,7 +26,7 @@
             <TextBox Grid.Row="0" Grid.Column="1"  Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Tags" Margin="0,0,10.8,0"/>
             <TextBox Grid.Row="1" Grid.Column="1" Name="tagsText" Text="{Binding Tags, Mode=TwoWay}" Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
-            <Button Content="search" Click="Search"/>
+            <Button Content="search"  Click="Search"/>
         </Grid>
         <ScrollViewer Grid.Row="1" Padding="11"
                     VerticalScrollBarVisibility="Auto">

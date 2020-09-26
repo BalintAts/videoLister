@@ -15,7 +15,7 @@ namespace VideoLister.ViewModel
         public List<VideoModel> GetList(string category, string actress, string tags,  int page)
         {
             Api api = new Api();
-            List<VideoModel> videos =  api.GetList(category, string actress, string tags, page);
+            List<VideoModel> videos =  api.GetList(category, actress, tags, page);
 
             return videos;
         }
