@@ -8,6 +8,7 @@ using System.Diagnostics;
 using VideoLister.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Windows.Automation.Peers;
 
 namespace VideoLister.API
 {
@@ -31,7 +32,7 @@ namespace VideoLister.API
                     //show the message to the user
                     return null;
                 }
-                return null;
+                
             }
         }
 
@@ -59,7 +60,7 @@ namespace VideoLister.API
                 videoModel.Duration = jToken["duration"].ToString();
                 videoModel.Tags = jToken["tags"].ToString().Split(',').ToList();
                 videoModel.ProfileImage = "https:" + jToken["profileImage"].ToString();
-                videoModel.PreviewImages = jToken["previewImages"].ToString().Split(',').ToList();
+                videoModel.PreviewImages = CreatePreviewImageUrlStrings(jToken["previewImages"]);
                 videoModel.TargetUrl = "https:" + jToken["targetUrl"].ToString();
                 videoModel.DetailsUrl = "https:" + jToken["detailsUrl"].ToString();
                 videoModel.Quality = jToken["quality"].ToString();
@@ -72,6 +73,16 @@ namespace VideoLister.API
             return videos;
         }
 
+        private List<string> CreatePreviewImageUrlStrings(JToken urls)
+        {
+            List<string> urlList = new List<string>();
+            List<string> result = new List<string>();
+            foreach( JToken imageLink in urls)
+            {
+                result.Add("https:" + imageLink.ToString());
+            }
+            return result;
+        }
 
     }
 }

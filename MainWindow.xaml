@@ -28,19 +28,23 @@
                         <StackPanel Orientation="Horizontal" >
                             <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
                             <StackPanel Orientation="Vertical">
-                                <ListView ItemsSource="{Binding PreviewImages, Mode=OneWay}">
-                                    <ListView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal"/>
-                                            <!--<Image Source="{Binding}"/>-->
-                                        </ItemsPanelTemplate>
-                                    </ListView.ItemsPanel>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Image Source="{Binding}"/>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+
+                                    <ListView ItemsSource="{Binding PreviewImages, Mode=OneWay}">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                                <!--<Image Source="{Binding}"/>-->
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding}" Width="150"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </ScrollViewer>
+
                                 <TextBlock Text="{Binding Title, Mode=OneWay}"/>
                                 <TextBlock>
                                     <Hyperlink NavigateUri="{Binding TargetUrl, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">

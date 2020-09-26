@@ -27,11 +27,20 @@ namespace VideoLister
             Videos.Clear();
             List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
             videos.ForEach(x => Videos.Add(x)); ;
-            foreach (VideoModel video in Videos)
-            {
-                Trace.WriteLine(video.Title);
-            }
-            DataContext = this;            
+            //foreach (VideoModel video in Videos)
+            //{
+            //    Trace.WriteLine(video.Title);
+            //}
+            DataContext = this;
+            //foreach (VideoModel item in Videos)
+               
+            //{
+            //    Trace.WriteLine("This is a video");
+            //    foreach (string tag in item.Tags)
+            //    {
+            //        Trace.WriteLine(tag);
+            //    }
+            //}
         }
 
 
@@ -44,6 +53,7 @@ namespace VideoLister
             List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
             videos.ForEach(x => Videos.Add(x));
             Trace.WriteLine(PageNumber);
+
 
         }
 
@@ -59,6 +69,7 @@ namespace VideoLister
             List<VideoModel> videos = videoViewModel.GetList(Category, PageNumber[0]);
             videos.ForEach(x => Videos.Add(x));
             Trace.WriteLine(PageNumber);
+         
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
