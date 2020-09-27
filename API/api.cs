@@ -38,6 +38,7 @@ namespace VideoLister.API
             UrlBuilder ub = new UrlBuilder();
             string url = ub.BuildUrl(category, actress, tags, page);
             string rawJson = GET(url);
+            Trace.WriteLine(rawJson);
             List<VideoModel> videos =  CreateModels(rawJson);
             return videos;
         }
