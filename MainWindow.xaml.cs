@@ -11,12 +11,10 @@ namespace VideoLister
 {
     public partial class MainWindow : Window , INotifyPropertyChanged
     {
-        //private int pageNumber = 1;
 
         public int pageNumber;
 
 
-        //public ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
         public ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
         private VideoViewModel videoViewModel { get; set; }
         private string Category { get; set; }
@@ -42,7 +40,6 @@ namespace VideoLister
             InitializeComponent();
             Category = "girl";
             PageNumber = 1;
-            //PageNumber.Add(pageNumber);
             Trace.WriteLine("main window initialized");
             videoViewModel = new VideoViewModel();
             UpdateList();
@@ -52,8 +49,6 @@ namespace VideoLister
         public void  NextPage(object sender, RoutedEventArgs e)
         {
             PageNumber++;
-            //PageNumber.Clear();
-            //PageNumber.Add(pageNumber);
             Videos.Clear();
             UpdateList();
         }
@@ -63,8 +58,6 @@ namespace VideoLister
             if (PageNumber >= 1)
             {
                 PageNumber--;
-                //PageNumber.Clear();
-                //PageNumber.Add(pageNumber);
             }
             UpdateList();
 
