@@ -70,5 +70,10 @@ namespace VideoLister
             List<VideoModel> videos = videoViewModel.GetList(Category, Actress, Tags, PageNumber[0]);
             videos.ForEach(x => Videos.Add(x));
         }
+
+        public void ShowErrorMessage(string message)
+        {
+
+        }
     }
 }

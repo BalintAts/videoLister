@@ -29,8 +29,7 @@
             <TextBox Grid.Row="1" Grid.Column="1" Name="tagsText" Text="{Binding Tags, Mode=TwoWay}" Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
             <Button Grid.Row="2" Grid.Column="1" Content="search"  Click="Search" Height="25" Margin="10.2,10,9.6,5" Grid.RowSpan="2"/>
         </Grid>
-        <ScrollViewer Grid.Row="1" Padding="11"
-                    VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <ListView ItemsSource="{Binding Videos , Mode = OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

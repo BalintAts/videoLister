@@ -23,16 +23,13 @@ namespace VideoLister.API
                 {
                     var response = client.GetStringAsync(url);
                     response.Wait();
-                    //Trace.WriteLine(response.Result);
-                    //CreateModels(response.Result);
                     return response.Result;
                 }
                 catch (HttpRequestException e)
                 {
-                    //show the message to the user
+                    Trace.WriteLine(e.Message);
                     return null;
-                }
-                
+                }                
             }
         }
 
@@ -80,6 +77,5 @@ namespace VideoLister.API
             }
             return result;
         }
-
     }
 }
