@@ -64,7 +64,7 @@
         </ScrollViewer>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Content="Prev" Width="76" Click="PrevPage" Margin="5,5,5,5" />
-            <TextBlock Text="{Binding PageNumber[0], Mode=TwoWay}" Margin="5,5,5,5"/>
+            <TextBlock Text="{Binding PageNumber, Mode=TwoWay}" Margin="5,5,5,5"/>
             <Button Content="Next"  Width="76" Click="NextPage" Margin="5,5,5,5"/>
 
         </StackPanel>
