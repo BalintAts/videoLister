@@ -8,25 +8,26 @@
         Title="MainWindow" Height="800" Width="800">
     <Grid RenderTransformOrigin="0.529,0.426">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="120"/>
             <RowDefinition Height="31*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid  Grid.Row="0" Margin="0,0,0,162.2" Grid.RowSpan="2">
+        <Grid  Grid.Row="0" Margin="0,0,-0.4,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  />
                 <ColumnDefinition MinWidth="300"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="30"/>
-                <RowDefinition MaxHeight="30"/>
-                <RowDefinition MaxHeight="30"/>
+                <RowDefinition MaxHeight="40" Height="40*"/>
+                <RowDefinition MaxHeight="40" Height="40*"/>
+                <RowDefinition MaxHeight="50" Height="23*"/>
+                <RowDefinition Height="17*"/>
             </Grid.RowDefinitions>
-            <Label  Grid.Row="0" Grid.Column="0" Content="Search actress" Margin="0,0,10.8,0"/>
+            <Label  Grid.Row="0" Grid.Column="0" Content="Search actress" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10.8,0"/>
             <TextBox Grid.Row="0" Grid.Column="1"  Name="actressText" Text="{Binding Actress, Mode=TwoWay}" Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Tags" Margin="0,0,10.8,0"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Tags:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10.8,0"/>
             <TextBox Grid.Row="1" Grid.Column="1" Name="tagsText" Text="{Binding Tags, Mode=TwoWay}" Height="23" VerticalAlignment="Top" Margin="10.2,10,9.6,0"/>
-            <Button Content="search"  Click="Search"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="search"  Click="Search" Height="25" Margin="10.2,10,9.6,5" Grid.RowSpan="2"/>
         </Grid>
         <ScrollViewer Grid.Row="1" Padding="11"
                     VerticalScrollBarVisibility="Auto">
@@ -34,26 +35,25 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" >
-                            <Image Source="{Binding ProfileImage, Mode=OneWay}"/>
+                            <Image Source="{Binding ProfileImage, Mode=OneWay}" Width="200"/>
                             <StackPanel Orientation="Vertical">
-                                <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                                    <ListView ItemsSource="{Binding PreviewImages, Mode=OneWay}">
-                                        <ListView.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ListView.ItemsPanel>
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <!--<Image Source="{Binding}" Width="150"/>-->
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </ScrollViewer>
-                                <TextBlock Text="{Binding Title, Mode=OneWay}"/>
-                                <TextBlock Text="{Binding Uploader, Mode=OneWay}"/>
-                                <TextBlock>
-                                    <Hyperlink NavigateUri="{Binding TargetUrl, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate">
+                                <ListView ItemsSource="{Binding PreviewImages, Mode=OneWay}">
+                                    <!--<ScrollViewer HorizontalScrollBarVisibility="Visible">-->
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding}" Width="150"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <!--</ScrollViewer>-->
+                                </ListView>
+                                <TextBlock Text="{Binding Title, Mode=OneWay}" Margin="5,5,5,5"/>
+                                <TextBlock Margin="5,5,5,5">
+                                    <Hyperlink NavigateUri="{Binding TargetUrl, Mode=OneWay}" RequestNavigate="Hyperlink_RequestNavigate" >
                                         Click here to have fun!
                                     </Hyperlink>
                                 </TextBlock>
