@@ -9,15 +9,29 @@ using System.Windows.Navigation;
 
 namespace VideoLister
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window , INotifyPropertyChanged
     {
-        private int pageNumber = 1; 
-        public ObservableCollection<int> PageNumber { get; set; } = new ObservableCollection<int>();
+
+        public int pageNumber;
+
+
         public ObservableCollection<VideoModel> Videos { get; set; } = new ObservableCollection<VideoModel>();
         private VideoViewModel videoViewModel { get; set; }
         private string Category { get; set; }
         public string Actress { get; set; }
         public string Tags { get; set; }
+        public int PageNumber
+        {
+            get
+            {
+                return this.pageNumber;
+            }
+            set
+            {
+                this.pageNumber = value;
+                OnPropertyChanged("PageNumber");
+            }
+        }
 
 
 
@@ -25,7 +39,7 @@ namespace VideoLister
         {            
             InitializeComponent();
             Category = "girl";
-            PageNumber.Add(pageNumber);
+            PageNumber = 1;
             Trace.WriteLine("main window initialized");
             videoViewModel = new VideoViewModel();
             UpdateList();
@@ -34,22 +48,19 @@ namespace VideoLister
 
         public void  NextPage(object sender, RoutedEventArgs e)
         {
-            pageNumber++;
-            PageNumber.Clear();
-            PageNumber.Add(pageNumber);
+            PageNumber++;
             Videos.Clear();
             UpdateList();
         }
 
         public void PrevPage(object sender, RoutedEventArgs e)
         {
-            if (pageNumber >= 1)
+            if (PageNumber >= 1)
             {
-                pageNumber--;
-                PageNumber.Clear();
-                PageNumber.Add(pageNumber);
+                PageNumber--;
             }
             UpdateList();
+
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -67,13 +78,19 @@ namespace VideoLister
         private void UpdateList()
         {
             Videos.Clear();
-            List<VideoModel> videos = videoViewModel.GetList(Category, Actress, Tags, PageNumber[0]);
+            Trace.WriteLine(PageNumber);
+            List<VideoModel> videos = videoViewModel.GetList(Category, Actress, Tags, PageNumber);
             videos.ForEach(x => Videos.Add(x));
         }
 
-        public void ShowErrorMessage(string message)
+        private void OnPropertyChanged(string property)
         {
-
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
